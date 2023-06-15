@@ -110,7 +110,7 @@ if (isset($_SESSION["cart"]) and !empty($_SESSION['cart'])) {
                     <input placeholder="Số điện thoại (bắt buộc)" type="text" name="phone" class="form-control" required>
                 </div>
                 <div id="customer-mail" class="col-lg-4 col-md-4 col-sm-12">
-                    <input value="<?= isset($_SESSION['client_logged_in']['2']) ? $_SESSION['client_logged_in']['1'] : '' ?>" placeholder="Email (bắt buộc)" type="text" name="mail" class="form-control" required>
+                    <input value="<?= isset($_SESSION['client_logged_in']['2']) ? $_SESSION['client_logged_in']['2'] : '' ?>" placeholder="Email (bắt buộc)" type="text" name="mail" class="form-control" required>
                 </div>
                 <div id="customer-add" class="col-lg-12 col-md-12 col-sm-12">
                     <input placeholder="Địa chỉ nhà riêng hoặc cơ quan (bắt buộc)" type="text" name="add" class="form-control" required>
