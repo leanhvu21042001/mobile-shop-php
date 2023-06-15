@@ -1,6 +1,33 @@
 <script>
     function buyNow() {
-        document.getElementById("buy-now").submit()
+
+
+        let name = document.getElementById("buy-now").querySelector("input[name='name']");
+        let phone = document.getElementById("buy-now").querySelector("input[name='phone']");
+        let mail = document.getElementById("buy-now").querySelector("input[name='mail']");
+        let address = document.getElementById("buy-now").querySelector("input[name='address']");
+
+        const inputs = {
+            name: name.value,
+            phone: phone.value,
+            mail: mail.value,
+            address: address.value,
+        };
+
+
+        let errorString = '';
+        Object.entries(inputs).forEach(([key, value]) => {
+            if (`${value}`.trim().length === 0) {
+                errorString += `Vui lòng nhập ${key} <br/>`;
+            }
+        });
+
+        if (errorString.trim().length === 0) {
+            document.getElementById("buy-now").submit();
+        } else {
+            document.getElementById('customer-error-string').innerHTML = `<div class=" alert alert-danger">${errorString}</div>`;
+        }
+
     }
 </script>
 <?php
@@ -29,7 +56,7 @@ if (isset($_SESSION["cart"]) and !empty($_SESSION['cart'])) {
         $name = $_POST['name'];
         $phone = $_POST['phone'];
         $mail = $_POST['mail'];
-        $address = $_POST['add'];
+        $address = $_POST['address'];
 
         $products_string = "";
         foreach ($_SESSION["cart"] as $prd_id => $qtt) {
@@ -113,11 +140,14 @@ if (isset($_SESSION["cart"]) and !empty($_SESSION['cart'])) {
                     <input value="<?= isset($_SESSION['client_logged_in']['2']) ? $_SESSION['client_logged_in']['2'] : '' ?>" placeholder="Email (bắt buộc)" type="text" name="mail" class="form-control" required>
                 </div>
                 <div id="customer-add" class="col-lg-12 col-md-12 col-sm-12">
-                    <input placeholder="Địa chỉ nhà riêng hoặc cơ quan (bắt buộc)" type="text" name="add" class="form-control" required>
+                    <input placeholder="Địa chỉ nhà riêng hoặc cơ quan (bắt buộc)" type="text" name="address" class="form-control" required>
                 </div>
 
                 <input type="hidden" name="buyNow">
             </div>
+
+            <div id="customer-error-string"></div>
+
         </form>
 
         <div class="row">
