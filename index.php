@@ -88,6 +88,9 @@ include_once("config/connect.php");
                             case "invoice":
                                 include_once("modules/invoice/invoice.php");
                                 break;
+                            case "invoice-detail":
+                                include_once("modules/invoice-detail/invoice-detail.php");
+                                break;
                         }
                     } else {
                         include_once("modules/product/product_feature.php");
